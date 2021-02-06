@@ -1,4 +1,4 @@
-package net.ambulando.watcher.config
+package net.ambulando.watcher.services.knowm.kraken
 
 import org.knowm.xchange.ExchangeFactory
 import org.knowm.xchange.kraken.KrakenExchange

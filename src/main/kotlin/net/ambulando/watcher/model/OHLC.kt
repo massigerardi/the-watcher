@@ -1,7 +1,9 @@
 package net.ambulando.watcher.model
 
+import lombok.EqualsAndHashCode
 import java.math.BigDecimal
 
+@EqualsAndHashCode
 data class OHLC(
     val time: Long,
     val open: BigDecimal,

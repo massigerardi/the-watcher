@@ -1,10 +1,8 @@
-package net.ambulando.watcher.services
+package net.ambulando.watcher.services.knowm.kraken
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-
-import org.junit.jupiter.api.Assertions.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import java.io.File
@@ -14,7 +12,6 @@ internal class KrakenServiceTest {
 
     @Autowired
     private lateinit var krakenService: KrakenService
-    
     
     @Test
     fun getTrade() {
@@ -28,5 +25,4 @@ internal class KrakenServiceTest {
         val price = krakenService.getPrice("xxx")
         assertThat(price).isNotNull
     }
-
 }
