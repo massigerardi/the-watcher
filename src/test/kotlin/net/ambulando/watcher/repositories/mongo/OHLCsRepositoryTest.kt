@@ -8,8 +8,10 @@ import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.data.mongo.AutoConfigureDataMongo
 import org.springframework.boot.test.context.SpringBootTest
+import java.io.File
 
 @SpringBootTest
+@AutoConfigureDataMongo
 internal class OHLCsRepositoryTest {
     
     @Autowired
@@ -21,12 +23,12 @@ internal class OHLCsRepositoryTest {
     @BeforeEach
     fun init() {
         println("init")
-        service.loadOHLC(1,"src/test/resources/kraken/XBTEUR_1.csv")
-        service.loadOHLC(1440,"src/test/resources/kraken/XBTEUR_1440_A.csv")
-        service.loadOHLC(1440,"src/test/resources/kraken/XBTEUR_1440_B.csv")
+        service.loadFromCSV(1, File("src/test/resources/kraken/XBTEUR_1.csv"), "XBTEUR", "test")
+        service.loadFromCSV(1440, File("src/test/resources/kraken/XBTEUR_1440_A.csv"), "XBTEUR", "test")
+        service.loadFromCSV(1440, File("src/test/resources/kraken/XBTEUR_1440_B.csv"), "XBTEUR", "test")
     }
     
-    
+    @AfterEach
     fun reset() {
         println("reset")
         repository.deleteAll()
@@ -47,10 +49,19 @@ internal class OHLCsRepositoryTest {
     }
 
     @Test
-    fun `should return candles between tow timestamps`() {
-        val ohlcs = repository.findOHLCsByIntervalAndOHLCsTimeBetwee(1440, 1378771200, 1379721600)
+    fun `should return candles between two timestamps`() {
+        val ohlcs = repository.findOHLCBetween(1440, "XBTEUR", "test", 1378771200000, 1379721600000)
         assertThat(ohlcs).isNotNull
         assertThat(ohlcs.ohlcs).isNotEmpty
-        
+        assertThat(ohlcs.ohlcs.size).isEqualTo(10)
     }
+
+    @Test
+    fun `should return candles between two timestamps in different records`() {
+        val ohlcs = repository.findOHLCBetween(1440, "XBTEUR", "test",1383264000000, 1383523200000)
+        assertThat(ohlcs).isNotNull
+        assertThat(ohlcs.ohlcs).isNotEmpty
+        assertThat(ohlcs.ohlcs.size).isEqualTo(4)
+    }
+
 }

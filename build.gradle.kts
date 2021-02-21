@@ -37,11 +37,14 @@ dependencies {
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
 	compileOnly("org.projectlombok:lombok")
 	annotationProcessor("org.projectlombok:lombok")
-	
+	annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 	implementation("org.knowm.xchange:xchange-core:5.0.4")
 	implementation("org.knowm.xchange:xchange-kraken:5.0.4")
 
-//	testImplementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo")
+	implementation("io.github.microutils:kotlin-logging:1.12.0")
+	
+	testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
+	testImplementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("io.projectreactor:reactor-test")
 }
@@ -55,7 +58,7 @@ dependencyManagement {
 tasks.withType<KotlinCompile> {
 	kotlinOptions {
 		freeCompilerArgs = listOf("-Xjsr305=strict")
-		jvmTarget = "11"
+		jvmTarget = JavaVersion.VERSION_11.toString()
 	}
 }
 

@@ -1,3 +1,14 @@
+trades:
+  symbols:
+    - "BTC/EUR"
+    - "ETH/EUR"
+  frequency: "0 23 * * *"
+  intervals:
+    - 1
+    - 5
+    - 15
+    - 30
+
 spring:
   data:
     mongodb:

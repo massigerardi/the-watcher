@@ -13,7 +13,7 @@ import java.util.*
 @Component
 class KnowmMapper {
 
-    fun toTrade(trade: org.knowm.xchange.dto.marketdata.Trade): Trade = Trade(time = TimeUtils.normalizeTime(trade.timestamp.time), price = trade.price.setScale(SCALE, RoundingMode.HALF_EVEN), volume = trade.originalAmount)
+    fun toTrade(trade: org.knowm.xchange.dto.marketdata.Trade): Trade = Trade(time = trade.timestamp.time, price = trade.price.setScale(SCALE, RoundingMode.HALF_EVEN), volume = trade.originalAmount)
 
     fun toPrice(ticker: Ticker): Price = Price(ticker.last, Currency.getInstance("EUR"))
 }
