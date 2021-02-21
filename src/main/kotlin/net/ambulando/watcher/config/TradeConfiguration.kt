@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration
 @Configuration
 @ConfigurationProperties(prefix = "trades")
 class TradeConfiguration {
-    lateinit var symbols: List<CurrencyPair>
-    lateinit var frequency: String
-    lateinit var intervals: List<Int>
+  lateinit var symbols: List<CurrencyPair>
+  lateinit var frequency: String
+  lateinit var intervals: List<Int>
 }

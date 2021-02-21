@@ -6,8 +6,8 @@ import org.knowm.xchange.currency.CurrencyPair
 
 interface IMarketDataService {
 
-    fun getTrades(pair: CurrencyPair, since: Long): List<Trade>
+  fun getTrades(pair: CurrencyPair, since: Long): List<Trade>
 
-    fun getPrice(pair: CurrencyPair): Price
-    
+  fun getPrice(pair: CurrencyPair): Price
+
 }

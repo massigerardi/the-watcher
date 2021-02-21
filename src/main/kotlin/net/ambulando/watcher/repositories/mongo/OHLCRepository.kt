@@ -8,9 +8,9 @@ import org.springframework.stereotype.Repository
 import java.util.*
 
 @Repository
-interface OHLCRepository: MongoRepository<OHLC, UUID>{
+interface OHLCRepository : MongoRepository<OHLC, UUID> {
 
-    @Query(value = "{ 'interval': ?0, 'ohlcs.time': { \$gte: ?1, \$lte: ?2} }", fields = " {'ohlcs': 1}")
-    fun findOHLCsByIntervalAndOHLCsTimeBetwee(interval: Int, from: Long, to: Long): OHLC
-    
+  @Query(value = "{ 'interval': ?0, 'ohlcs.time': { \$gte: ?1, \$lte: ?2} }", fields = " {'ohlcs': 1}")
+  fun findOHLCsByIntervalAndOHLCsTimeBetwee(interval: Int, from: Long, to: Long): OHLC
+
 }

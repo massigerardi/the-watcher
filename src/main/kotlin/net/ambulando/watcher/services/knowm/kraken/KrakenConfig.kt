@@ -10,11 +10,11 @@ import org.springframework.context.annotation.Configuration
 @Configuration
 class KrakenConfig {
 
-    @Bean
-    fun krakenMarketDataService(exchange: Exchange): MarketDataService =
-        exchange.marketDataService
+  @Bean
+  fun krakenMarketDataService(exchange: Exchange): MarketDataService =
+    exchange.marketDataService
 
-    @Bean
-    fun krakenExchange(): Exchange =
-        ExchangeFactory.INSTANCE.createExchange(KrakenExchange::class.java)
+  @Bean
+  fun krakenExchange(): Exchange =
+    ExchangeFactory.INSTANCE.createExchange(KrakenExchange::class.java)
 }
